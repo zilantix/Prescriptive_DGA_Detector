@@ -5,6 +5,9 @@ Input: google.com
 Expected: Low DGA probability (≈0–5%), Classification: ✅ Likely Legit
 Verify: SHAP shows low entropy/length impact.
 
+![Google.com Legit Prediction](data/DGA_screenshot.png)
+
+
 ### DGA-like example
 Input: xj29qwe9z0asd.biz
 Expected: High DGA probability (≈70–100%), Classification: 🚨 Likely DGA
