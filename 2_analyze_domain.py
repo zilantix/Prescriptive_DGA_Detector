@@ -4,7 +4,7 @@ import argparse
 from pathlib import Path
 import numpy as np, pandas as pd
 import shap
-from utils_dga import load_feature_schema, featurize_single, predict_proba_mojo, summarize_shap, gen_playbook
+from utils_dga import load_feature_schema, featurize_single, predict_proba_auto, summarize_shap, gen_playbook
 def parse_args():
     p = argparse.ArgumentParser(description="Analyze a domain: detect (MOJO), explain (SHAP), prescribe (GenAI)")
     p.add_argument("--domain", required=True)
@@ -18,7 +18,12 @@ def main():
     args = parse_args()
     feature_order = load_feature_schema(Path(args.feature_schema))
     x = featurize_single(args.domain, feature_order)
-    proba = predict_proba_mojo(Path(args.model_zip), x, positive_label=args.positive_label)
+    proba = predict_proba_auto(
+    x,
+    mojo_zip=Path(args.model_zip),
+    skl_pkl=Path("model/DGA_Leader_sklearn.pkl"),
+    positive_label=args.positive_label
+    )
     if args.background_csv and Path(args.background_csv).exists():
         bg = pd.read_csv(args.background_csv)
     else:
