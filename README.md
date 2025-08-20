@@ -1,17 +1,35 @@
 # Prescriptive DGA Detector
-End-to-end tool that combines **H2O AutoML**, **SHAP**, and **Generative AI** to detect DGAs, explain model reasoning, and produce a prescriptive incident response playbook.
+
+demo: Streamlit App https://dga-detect.streamlit.app/
+
+End-to-end tool that combines **AutoML (H2O / sklearn fallback)**, **SHAP explainability**, and **Generative AI** to:
+
+- Detect if a domain is algorithmically generated (DGA) or legitimate.
+- Explain *why* the model made that prediction using SHAP.
+- Automatically produce a **prescriptive incident response playbook** for analysts.
+
+---
+
 ## Repo Layout
 ```
-model/                 # MOJO + artifacts (created by training)
-data/                  # put your training CSV here
-1_train_and_export.py  # AutoML + MOJO export
-2_analyze_domain.py    # detect -> explain -> prescribe (CLI)
-utils_dga.py           # shared functions
-app_streamlit.py       # Streamlit UI
-.github/workflows/lint.yml
-requirements.txt
-README.md
-TESTING.md
+model/
+├── DGA_Leader_sklearn.pkl   # Trained sklearn model (or H2O MOJO if using AutoML)
+├── feature_schema.json      # Feature schema
+└── background_features.csv  # Background SHAP data
+
+data/
+└── dga_dataset_train.csv    # Training dataset (domain, features, label)
+
+1_train_and_export.py          # H2O AutoML + MOJO export
+1_train_and_export_sklearn.py  # Sklearn training + pickle export (fallback)
+2_analyze_domain.py            # CLI: detect → explain → prescribe
+utils_dga.py                   # Shared utilities
+app_streamlit.py               # Streamlit UI for interactive analysis
+
+.github/workflows/lint.yml     # CI linting
+requirements.txt               # Python dependencies
+README.md                      # Project documentation
+TESTING.md                     # Manual testing guide
 ```
 ## Setup
 ```bash
