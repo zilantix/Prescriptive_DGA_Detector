@@ -1,6 +1,0 @@
-{
-  "leader_model_id": "StackedEnsemble_AllModels_1_AutoML_1_20250820_91749",
-  "mojo_path": "/Users/ruslaniakupov/Downloads/dag/model/StackedEnsemble_AllModels_1_AutoML_1_20250820_91749.zip",
-  "label_col": "class",
-  "domain_col": "domain"
-}
