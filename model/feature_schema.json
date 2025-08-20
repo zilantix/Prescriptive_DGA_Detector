@@ -1,0 +1,10 @@
+{
+  "feature_order": [
+    "f_len",
+    "f_entropy",
+    "f_digit_ratio",
+    "f_vowel_ratio",
+    "f_unique_ratio",
+    "f_cons_run_mean"
+  ]
+}
